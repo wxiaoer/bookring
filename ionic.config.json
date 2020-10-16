@@ -1,0 +1,7 @@
+{
+  "name": "bookring",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
