@@ -1,0 +1,3 @@
+1. dirct url tabs won't light ; -- fixed by add all tab button to one tab bar
+2. book model not full screen in ipad mode
+3. change thumbnail load url from /thumbnails/id/thumbnailname to /thumbnails/bookid

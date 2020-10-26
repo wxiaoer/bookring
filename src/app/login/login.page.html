@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="tab">
+      <ion-segment-button value="Login">
+        Login
+      </ion-segment-button>
+      <ion-segment-button value="Signup">
+        Signup
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <form (ngSubmit)="login()" [hidden]="tab!='Login'">
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input clearInput [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="ngSubmit">Login</ion-button>
+  </form>
+  <form (ngSubmit)="signup()" [hidden]="tab!='Signup'">
+    <ion-item>
+      <ion-label position="stacked">User name</ion-label>
+      <ion-input clearInput [(ngModel)]="userName" name="userName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input clearInput [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="ngSubmit">Login</ion-button>
+  </form>
+
+
+</ion-content>

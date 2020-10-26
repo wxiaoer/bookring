@@ -1,19 +1,29 @@
 <ion-tabs>
 
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar slot="bottom" >
     <ion-tab-button tab="tab1">
-      <ion-icon name="triangle"></ion-icon>
-      <ion-label>Tab 1</ion-label>
+      <ion-icon name="library"></ion-icon>
+      <ion-label>Library</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2">
-      <ion-icon name="ellipse"></ion-icon>
-      <ion-label>Tab 2</ion-label>
+    <ion-tab-button tab="tab2" [hidden]="!userService.logStatus">
+      <ion-icon name="book"></ion-icon>
+      <ion-label>Bookring</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab3">
-      <ion-icon name="square"></ion-icon>
-      <ion-label>Tab 3</ion-label>
+    <ion-tab-button tab="tab3" [hidden]="!userService.logStatus">
+      <ion-icon name="chatbubbles"></ion-icon>
+      <ion-label>Message</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="setting" [hidden]="!userService.logStatus">
+      <ion-icon name="settings"></ion-icon>
+      <ion-label>Setting</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="login" [hidden]="userService.logStatus">
+      <ion-icon name="log-in"></ion-icon>
+      <ion-label>Login</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 

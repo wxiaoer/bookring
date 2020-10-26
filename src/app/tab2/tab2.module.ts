@@ -8,13 +8,21 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 
+import {ngfModule} from 'angular-file'
+import {
+  HttpClient, HttpClientModule, HttpRequest, HttpResponse, HttpEvent
+} from "@angular/common/http"
+
+
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab2PageRoutingModule
+    Tab2PageRoutingModule,
+    HttpClientModule,
+    ngfModule,
   ],
   declarations: [Tab2Page]
 })

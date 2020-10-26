@@ -1,17 +1,71 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
+    <ion-buttons slot="start" collapse="true">
+      <ion-button (click)="cancelMultiSelect()" *ngIf="multiSelect">
+        <ion-icon slot="icon-only" name="chevron-back-outline">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="!multiSelect">
+      Bookring
     </ion-title>
+    <ion-buttons slot="end" collapse="true">
+      <ion-button (click)="booksDownload()" *ngIf="multiSelect">
+        <ion-icon slot="icon-only" name="cloud-download-outline">
+        </ion-icon>
+      </ion-button>
+      <ion-button (click)="booksShare()" *ngIf="multiSelect">
+        <ion-icon slot="icon-only" name="share-social-outline">
+        </ion-icon>
+      </ion-button>
+      <ion-button (click)="booksDelete()" *ngIf="multiSelect" style="margin-left: 1em;">
+        <ion-icon slot="icon-only" name="trash-outline" color="danger">
+        </ion-icon>
+      </ion-button>
+      <ion-button (click)="startMultiSelect()" *ngIf="!multiSelect">
+        <ion-icon slot="icon-only" name="checkmark-done-outline">
+        </ion-icon>
+      </ion-button>
+      <ion-button (click)="bookringAdd()" *ngIf="!multiSelect">
+        <ion-icon slot="icon-only" name="add-outline">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Bookring</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-searchbar [(ngModel)]="searchWord"></ion-searchbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let book of bookringService.bookRing" color="primary" [hidden]="book.name.indexOf(this.searchWord)==-1">
+        <!-- <ion-img [src]="photo.webviewPath" (click)="showActionSheet(index, position)"></ion-img> -->
+        <ion-card (tap)="bookClick(book)" (press)="bookPress(book)" [class]="bookCardClass(book)">
+          <ion-img [src]="book.thumbnail"></ion-img>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div hidden>
+    <input id="file" ngf multiple type="file" accept="pdf" [(files)]="files" />
+    <button *ngIf="files" (click)="uploadFiles(files)">send files</button>
+
+    <ngfFormData [files]="files" [(FormData)]="myFormData" postName="bookFiles" (FormDataChange)="booksUpload($event)">
+    </ngfFormData>
+
+    <ngfUploadStatus [(percent)]="uploadPercent" [httpEvent]="httpEvent"></ngfUploadStatus>
+
+    <div *ngIf="uploadPercent">
+      Upload Progress: {{ uploadPercent }}%
+    </div>
+  </div>
+
 </ion-content>
